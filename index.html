@@ -6,14 +6,14 @@
   <title>LANX Preview Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin:0; font-family:'Montserrat', sans-serif; background:black; color:white; scroll-behavior:smooth; }
+    body { margin:0; font-family: 'Montserrat', sans-serif; background:black; color:white; scroll-behavior: smooth; }
 
     /* HEADER */
     header { 
       display:flex; 
       justify-content:space-between; 
       align-items:center; 
-      padding:8px 15px; 
+      padding:10px 15px; 
       background:black; 
       color:white; 
       position:fixed; 
@@ -22,77 +22,121 @@
       z-index:1000; 
       box-shadow:0 2px 6px rgba(0,0,0,0.6);
     }
-    header .logo { max-height:50px; height:auto; width:auto; }
-    .menu-icon { cursor:pointer; font-size:28px; margin-right:15px; transition:color 0.3s; }
+    header .logo { 
+      max-height:50px; 
+      height:auto; 
+      width:auto; 
+    }
+
+    .menu-icon { 
+      cursor:pointer; 
+      font-size:28px; 
+      margin-right:20px; 
+      z-index:1300;
+      transition:color 0.3s;
+    }
     .menu-icon:hover { color:crimson; }
 
     .nav-links { 
-      display:none; flex-direction:column; background:black; 
-      position:absolute; right:15px; top:60px; 
-      border:1px solid crimson; animation:fadeIn 0.4s ease; 
+      display:none; 
+      flex-direction:column; 
+      background:black; 
+      position:absolute; 
+      right:15px; 
+      top:55px; 
+      border:1px solid crimson; 
+      animation:fadeIn 0.4s ease; 
     }
-    .nav-links a { padding:12px 24px; text-decoration:none; color:white; transition:background 0.3s, color 0.3s; }
+    .nav-links a { 
+      padding:12px 24px; 
+      text-decoration:none; 
+      color:white; 
+      transition:background 0.3s, color 0.3s; 
+    }
     .nav-links a:hover { background:crimson; color:black; }
 
-    @keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes fadeIn { 
+      from {opacity:0; transform:translateY(-10px);} 
+      to {opacity:1; transform:translateY(0);} 
+    }
 
-    /* LANX FLOAT TEXT */
-    .brand-name { 
-      position:fixed; top:12px; left:50%; transform:translateX(-50%); 
-      font-size:3em; font-weight:bold; color:crimson; 
-      letter-spacing:2px; font-style:italic; z-index:1200; 
-      pointer-events:none; 
+    /* BRAND NAME */
+    .brand-name {
+      position:fixed;
+      top:12px;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:3em;
+      font-weight:bold;
+      color:crimson;
+      font-family:'Rijusans', sans-serif;
+      font-style:italic;
+      z-index:1200;
     }
 
     /* HERO */
     .hero { 
-      margin-top:50px;   /* lebih rapat dengan header */
-      position:relative; overflow:hidden; 
-      height:85vh; 
+      margin-top:55px; 
+      position:relative; 
+      overflow:hidden; 
+      height:90vh; 
     }
     .slide { 
-      position:absolute; width:100%; height:100%; 
-      background-size:cover; background-position:center; 
-      display:flex; align-items:center; justify-content:center; 
-      font-size:2.5em; font-weight:bold; color:white; 
-      opacity:0; transition:opacity 1.5s ease-in-out; 
-      text-align:center; padding:0 10px;
+      position:absolute; 
+      width:100%; 
+      height:100%; 
+      background-size:cover; 
+      background-position:center; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      font-size:2em; 
+      font-weight:bold; 
+      color:white; 
+      opacity:0; 
+      transition:opacity 1.5s ease-in-out; 
     }
     .slide.active { opacity:1; }
 
-    section { padding:80px 20px; text-align:center; opacity:0; transform:translateY(40px); transition:all 0.8s ease; }
+    /* SECTIONS */
+    section { 
+      padding:80px 20px; 
+      text-align:center; 
+      opacity:0; 
+      transform:translateY(40px); 
+      transition:all 0.8s ease; 
+    }
     section.visible { opacity:1; transform:translateY(0); }
 
     .about p { max-width:700px; margin:15px auto; line-height:1.6; }
 
-    /* SHOP PREVIEW */
-    .shop-preview { display:flex; justify-content:center; gap:20px; margin-top:30px; flex-wrap:wrap; }
+    .shop-preview { display:flex; justify-content:center; gap:20px; margin-top:30px; }
     .shop-box { 
       width:220px; height:220px; 
       background:white url('image/item1.jpg') center/cover no-repeat; 
       display:flex; align-items:center; justify-content:center; 
-      font-weight:bold; color:black; cursor:pointer; 
-      border-radius:8px; 
+      font-weight:bold; color:black; 
+      cursor:pointer; border-radius:8px; 
       transition:transform 0.3s, box-shadow 0.3s; 
     }
     .shop-box:nth-child(2) { background:white url('image/item2.jpg') center/cover no-repeat; }
     .shop-box:hover { transform:scale(1.05); box-shadow:0 6px 20px rgba(255,0,80,0.4); }
 
-    /* BRANDS */
     .brands-logos { display:flex; justify-content:center; gap:40px; margin-top:30px; flex-wrap:wrap; }
-    .brands-logos .logo { 
-      width:120px; height:60px; 
-      background-size:contain; background-repeat:no-repeat; background-position:center; 
-      border-radius:6px; 
-    }
+    .brands-logos .logo { width:120px; height:60px; background-size:contain; background-repeat:no-repeat; background-position:center; }
     .brands-logos .logo:nth-child(1) { background-image:url('image/brand1.jpg'); }
     .brands-logos .logo:nth-child(2) { background-image:url('image/brand2.jpg'); }
     .brands-logos .logo:nth-child(3) { background-image:url('image/brand3.jpg'); }
 
-    /* CONTACT */
     .contact button { 
-      padding:22px 100px; background:crimson; border:none; color:black; 
-      font-size:1.3em; cursor:pointer; border-radius:8px; font-weight:bold; 
+      padding:22px 100px; 
+      background:crimson; 
+      border:none; 
+      color:black; 
+      font-size:1.3em; 
+      cursor:pointer; 
+      border-radius:8px; 
+      font-weight:bold; 
       transition:background 0.3s, transform 0.3s; 
     }
     .contact button:hover { background:white; color:crimson; transform:scale(1.05); }
@@ -101,14 +145,13 @@
 
     /* RESPONSIVE */
     @media (max-width:768px){
-      .brand-name { font-size:2em; top:10px; }
       header .logo { max-height:40px; }
-      .menu-icon { margin-right:10px; }
-      .hero { margin-top:45px; height:70vh; }
-      .slide { font-size:1.5em; padding:0 15px; }
+      .brand-name { font-size:2em; top:8px; }
+      .menu-icon { font-size:26px; margin-right:12px; }
+      .hero { margin-top:50px; height:70vh; }
       .shop-preview { flex-direction:column; align-items:center; }
       .brands-logos { flex-direction:column; align-items:center; }
-      .contact button { width:85%; padding:16px; }
+      .contact button { width:80%; padding:18px; }
     }
   </style>
 </head>
@@ -121,4 +164,82 @@
       <a href="#about">About</a>
       <a href="#shop">Shop</a>
       <a href="#brands">Brand We Trust</a>
-      <a
+      <a href="#contact">Reach Us</a>
+    </div>
+  </header>
+
+  <div class="brand-name">LANX</div>
+
+  <section class="hero" id="hero">
+    <div class="slide active" style="background-image:url('image/hero1.jpg')">Second Or Never</div>
+    <div class="slide" style="background-image:url('image/hero2.jpg')">I See RED</div>
+    <div class="slide" style="background-image:url('image/hero3.jpg')">Rising Star</div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About</h2>
+    <p><strong>Owner's Dream:</strong> He dreamt of being a professional rider with sponsors since childhood, always chasing speed and recognition.</p>
+    <p><strong>About LANX:</strong> A brand created for all-rounder sport fashion, even suitable for daily shopping or market moments.</p>
+  </section>
+
+  <section class="shop" id="shop">
+    <h2>Shop Preview</h2>
+    <div class="shop-preview">
+      <a href="linked here" class="shop-box">Item 1</a>
+      <a href="linked here" class="shop-box">Item 2</a>
+    </div>
+  </section>
+
+  <section class="brands" id="brands">
+    <h2>Brand We Trust</h2>
+    <div class="brands-logos">
+      <div class="logo"></div>
+      <div class="logo"></div>
+      <div class="logo"></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact</h2>
+    <button onclick="window.open('https://forms.gle/PLACEHOLDER','_blank')">REACH US</button>
+  </section>
+
+  <footer>
+    <p>LnxwCopyright2025</p>
+  </footer>
+
+  <script>
+    // Hero Slideshow
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+    setInterval(()=>{
+      slides[index].classList.remove('active');
+      index = (index+1) % slides.length;
+      slides[index].classList.add('active');
+    },5000); // 5 seconds each
+
+    // Menu toggle
+    const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+    menuIcon.addEventListener('click', ()=>{
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+    document.querySelectorAll('.nav-links a').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        navLinks.style.display='none';
+      });
+    });
+
+    // Scroll fade effect
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', ()=>{
+      sections.forEach(sec=>{
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100){
+          sec.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
