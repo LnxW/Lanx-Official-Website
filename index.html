@@ -13,7 +13,7 @@
       display:flex; 
       justify-content:space-between; 
       align-items:center; 
-      padding:8px 15px;                /* header lebih kecil */
+      padding:8px 15px; 
       background:black; 
       color:white; 
       position:fixed; 
@@ -23,11 +23,16 @@
       box-shadow:0 2px 6px rgba(0,0,0,0.6);
     }
     header .logo { 
-      max-height:50px;                 /* elak crop */
+      max-height:50px; 
       height:auto; 
       width:auto; 
     }
-    .menu-icon { cursor:pointer; font-size:26px; transition:color 0.3s; }
+    .menu-icon { 
+      cursor:pointer; 
+      font-size:28px; 
+      margin-right:15px;   /* bagi jarak dari tepi kanan */
+      transition:color 0.3s; 
+    }
     .menu-icon:hover { color:crimson; }
 
     .nav-links { 
@@ -66,11 +71,16 @@
       font-family:'Rijusans', sans-serif; 
       font-style:italic; 
       z-index:1200; 
-      pointer-events:none; /* elak block klik menu */
+      pointer-events:none; 
     }
 
     /* HERO */
-    .hero { margin-top:70px; position:relative; overflow:hidden; height:90vh; }
+    .hero { 
+      margin-top:60px;  /* lebih rapat dengan header */
+      position:relative; 
+      overflow:hidden; 
+      height:90vh; 
+    }
     .slide { 
       position:absolute; 
       width:100%; 
@@ -118,7 +128,7 @@
     .brands-logos { display:flex; justify-content:center; gap:40px; margin-top:30px; flex-wrap:wrap; }
     .brands-logos .logo { 
       width:120px; height:60px; 
-      background-size:contain;       /* contain, bukan cover → elak crop */
+      background-size:contain; 
       background-repeat:no-repeat; 
       background-position:center; 
       border-radius:6px; 
@@ -150,6 +160,7 @@
       .contact button { width:80%; padding:18px; }
       .brand-name { font-size:2em; top:8px; }
       header .logo { max-height:40px; }
+      .menu-icon { margin-right:10px; }
     }
   </style>
 </head>
