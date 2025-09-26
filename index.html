@@ -1,272 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LANX — Preview</title>
-
-  <!-- Kanit + Montserrat fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanx Official Website</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap">
   <style>
-    :root{
-      --bg:#000;
-      --accent:#ff2b4d;
-      --white:#fff;
-      --shadow: rgba(0,0,0,0.7);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:'Kanit',sans-serif;
-      background:var(--bg);
-      color:var(--white);
-      scroll-behavior:smooth;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* ===== HEADER ===== */
-    header{
-      position:fixed;
-      top:0;left:0;right:0;
-      height:62px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:8px 18px;
-      z-index:1200;
-      background:rgba(0,0,0,0.8); /* hitam 80% opacity */
-    }
-    header .left{display:flex;align-items:center;gap:12px}
-    header img.logo{height:40px; width:auto; object-fit:contain}
-
-    /* brand name normal balik */
-    .brand-name{
-      position:fixed;
-      top:6px;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:26px;
-      font-weight:700;
-      font-family:'Montserrat',sans-serif;
-      color:var(--accent);
-      z-index:1250;
+    body {
+      font-family: 'Kanit', sans-serif;
+      background: #fff;
+      color: #111;
     }
 
-    /* hamburger */
-    .menu-btn{
-      font-size:32px;
-      cursor:pointer;
-      padding:6px 10px;
-      border:none;
-      background:transparent;
-      color:var(--white);
-      z-index:1300;
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8); /* 80% opacity black */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      z-index: 1000;
     }
 
-    .nav-panel{
-      position:fixed;
-      top:64px; right:18px;
-      background:rgba(0,0,0,0.95);
-      display:none; flex-direction:column;
-      gap:6px;
-      padding:8px; border-radius:8px;
-      z-index:1300;
-    }
-    .nav-panel a{ color:var(--white); text-decoration:none; padding:8px 14px; display:block }
-    .nav-panel a:hover{ background:var(--accent); color:#000 }
-
-    /* ===== HERO ===== */
-    main{min-height:100vh}
-    .hero-wrap{
-      display:flex; align-items:center; justify-content:center;
-      padding:90px 18px 40px;
-    }
-    .hero-box{
-      width:100%; max-width:1100px;
-      height:60vh; min-height:320px;
-      border-radius:20px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 14px 40px rgba(0,0,0,0.6);
-    }
-    .slide{
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      background-size:cover; background-position:center;
-      opacity:0; transition:opacity 1s ease;
-    }
-    .slide.active{opacity:1}
-    .slide .caption{
-      text-align:center;
-      font-size:clamp(28px,4vw,56px);
-      font-weight:500;
-      text-shadow: 2px 2px 12px var(--shadow);
-    }
-    .slide .caption .red{ color:var(--accent); font-weight:700 }
-
-    /* arrows */
-    .arrow{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:50px; height:50px; border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
-      background:rgba(0,0,0,0.45); color:var(--white);
-      cursor:pointer; z-index:1200;
-    }
-    .arrow.left{ left:14px }
-    .arrow.right{ right:14px }
-
-    /* dots */
-    .dots{ position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:1200 }
-    .dots button{ width:10px;height:10px;border-radius:50%; background:rgba(255,255,255,0.18); border:0; cursor:pointer }
-    .dots button.active{ background:var(--accent) }
-
-    /* ===== CONTENT SECTIONS ===== */
-    section{ padding:60px 18px; }
-    .container{ max-width:1100px; margin:0 auto }
-
-    .shop-preview{ display:flex; gap:18px; flex-wrap:wrap; justify-content:center }
-    .shop-box{ width:240px; height:240px; border-radius:12px; overflow:hidden; background-size:cover; background-position:center; display:flex; align-items:flex-end; justify-content:center; color:#000; font-weight:700 }
-
-    .brands-logos{
-      display:flex; gap:24px;
-      justify-content:center; align-items:center;
-      flex-wrap:wrap;
-    }
-    .brands-logos .logo{
-      width:160px; height:80px;
-      background-size:contain; background-repeat:no-repeat;
-      background-position:center;
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .contact{ display:flex; justify-content:center }
-    .contact .btn{ background:var(--accent); border-radius:8px; padding:18px 56px; font-weight:700; color:#000; cursor:pointer; border:none }
+    header .logo img {
+      height: 40px;
+    }
 
-    footer{ padding:28px 18px; text-align:center; color:rgba(255,255,255,0.6) }
+    header .logo h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
 
-    @media (max-width:640px){
-      .brand-name{font-size:20px}
-      .hero-box{ height:48vh }
-      .slide .caption{ font-size:clamp(20px,6vw,34px) }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f44336;
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 80px; /* avoid header overlap */
+      height: 100vh;
+      background: url('image/item1.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Shop Section */
+    .shop {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .shop h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .shop-items {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .shop-items img {
+      width: 250px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* About Section */
+    .about {
+      padding: 100px 20px;
+      background: #f2f2f2;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* Brand section */
+    .brand {
+      padding: 100px 20px;
+      text-align: center;
+      background: #f9f9f9;
+    }
+
+    .brand h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .brand-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .brand-logos img {
+      height: 60px;
+      object-fit: contain;
+    }
+
+    /* Footer */
+    footer {
+      padding: 20px;
+      text-align: center;
+      background: #111;
+      color: #fff;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
-    <div class="left">
-      <img class="logo" src="image/header.png" alt="LANX logo">
+    <div class="logo">
+      <img src="image/header.png" alt="Lanx Logo">
+      <h1>LANX</h1>
     </div>
-    <div class="brand-name">LANX</div>
-    <div>
-      <button class="menu-btn" aria-label="menu">☰</button>
-      <nav class="nav-panel">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#shop">Shop</a>
-        <a href="#brands">Brand We Trust</a>
-        <a href="#contact">Reach Us</a>
-      </nav>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#brand">Brand</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <div class="hero-wrap" id="hero">
-      <div class="hero-box" id="heroBox">
-        <div class="slide active" data-index="0" style="background-image:url('image/hero1.jpg')">
-          <div class="caption">Second Or Never</div>
-        </div>
-        <div class="slide" data-index="1" style="background-image:url('image/hero2.jpg')">
-          <div class="caption">I See <span class="red">RED</span></div>
-        </div>
-        <div class="slide" data-index="2" style="background-image:url('image/hero3.jpg')">
-          <div class="caption">Rising Star</div>
-        </div>
-        <button class="arrow left" aria-label="previous">‹</button>
-        <button class="arrow right" aria-label="next">›</button>
-        <div class="dots">
-          <button data-dot="0" class="active"></button>
-          <button data-dot="1"></button>
-          <button data-dot="2"></button>
-        </div>
-      </div>
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <h1>I SEE <span style="color:red;">RED</span></h1>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="shop">
+    <h2>Our Collection</h2>
+    <div class="shop-items">
+      <img src="image/item1.jpg" alt="Item 1">
+      <img src="image/item2.jpg" alt="Item 2">
     </div>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-        <h2>About</h2>
-        <p>LANX creates all-round sport fashion: trackday-ready pieces that work for street, market runs, and everyday life.</p>
-      </div>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>
+      LANX is more than just a clothing brand. We represent speed, comfort, and a unique lifestyle.
+      From streetwear to daily essentials, our designs are crafted to keep you moving with confidence.
+    </p>
+  </section>
 
-    <!-- SHOP -->
-    <section id="shop">
-      <div class="container">
-        <h2>Shop Preview</h2>
-        <div class="shop-preview">
-          <a class="shop-box" style="background-image:url('image/item1.jpg')">Item 1</a>
-          <a class="shop-box" style="background-image:url('image/item2.jpg')">Item 2</a>
-        </div>
-      </div>
-    </section>
+  <!-- Brand Section -->
+  <section id="brand" class="brand">
+    <h2>BRANDS WE TRUST</h2>
+    <div class="brand-logos">
+      <img src="image/brand1.jpg" alt="Brand 1">
+      <img src="image/brand2.jpg" alt="Brand 2">
+      <img src="image/brand3.jpg" alt="Brand 3">
+    </div>
+  </section>
 
-    <!-- BRANDS -->
-    <section id="brands">
-      <div class="container">
-        <h2 style="text-align:center">Brand We Trust</h2>
-        <div class="brands-logos">
-          <div class="logo" style="background-image:url('image/brand1.jpg')"></div>
-          <div class="logo" style="background-image:url('image/brand2.jpg')"></div>
-          <div class="logo" style="background-image:url('image/brand3.jpg')"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container contact">
-        <button class="btn" onclick="window.open('https://forms.gle/PLACEHOLDER','_blank')">REACH US</button>
-      </div>
-    </section>
-  </main>
-
+  <!-- Footer -->
   <footer>
-    <div class="container">LnxwCopyright2025 — preview</div>
+    <p>© 2025 Lanx Official. All rights reserved.</p>
   </footer>
 
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dots button');
-    const prev = document.querySelector('.arrow.left');
-    const next = document.querySelector('.arrow.right');
-    let idx = 0;
-    let timer = null;
-
-    function go(i){
-      slides[idx].classList.remove('active');
-      dots[idx].classList.remove('active');
-      idx = (i + slides.length) % slides.length;
-      slides[idx].classList.add('active');
-      dots[idx].classList.add('active');
-    }
-    function nextSlide(){ go(idx+1) }
-    function prevSlide(){ go(idx-1) }
-
-    next.addEventListener('click', ()=>{ nextSlide(); resetTimer() });
-    prev.addEventListener('click', ()=>{ prevSlide(); resetTimer() });
-    dots.forEach(d=> d.addEventListener('click', e=>{ go(Number(e.currentTarget.dataset.dot)); resetTimer() }));
-
-    function startTimer(){ timer = setInterval(nextSlide,5000) }
-    function resetTimer(){ clearInterval(timer); startTimer() }
-    startTimer();
-
-    // menu toggle
-    const menuBtn = document.querySelector('.menu-btn');
-    const nav = document.querySelector('.nav-panel');
-    menuBtn.addEventListener('click', ()=>{
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    });
-    document.querySelectorAll('.nav-panel a').forEach(a=> a.addEventListener('click', ()=> nav.style.display='none'));
-  </script>
 </body>
 </html>
