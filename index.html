@@ -28,17 +28,19 @@
     }
 
     /* ===== HEADER ===== */
-    header{
-      position:fixed;
-      top:0;left:0;right:0;
-      height:62px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:8px 18px;
-      z-index:1200;
-      background:transparent;
-    }
+   header{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 18px;
+  z-index:1200;
+  background:rgba(0,0,0,0.65); /* hitam transparent */
+  backdrop-filter: blur(6px);  /* kasi ada frosted effect sikit */
+}
+
     header .left{display:flex;align-items:center;gap:12px}
     header img.logo{height:40px; width:auto; object-fit:contain}
 
