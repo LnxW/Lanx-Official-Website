@@ -1,327 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LANX — Preview</title>
-
-  <!-- Kanit font (medium + bold) -->
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;900&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanx Official Website</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root{
-      --bg:#000;
-      --accent:#ff2b4d; /* rose red */
-      --white:#fff;
-      --shadow: rgba(0,0,0,0.7); /* 70% */
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Kanit',sans-serif;
-      background:var(--bg);
-      color:var(--white);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      scroll-behavior:smooth;
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* ===== HEADER ===== */
-   header{
-  position:fixed;
-  top:0;left:0;right:0;
-  height:62px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:8px 18px;
-  z-index:1200;
-  background:rgba(0,0,0,0.65); /* hitam transparent */
-  backdrop-filter: blur(6px);  /* kasi ada frosted effect sikit */
-}
-
-    header .left{display:flex;align-items:center;gap:12px}
-    header img.logo{height:40px; width:auto; object-fit:contain}
-
-    /* brand name centered and floating above hero */
-    .brand-name{
-      position:fixed;
-      left:50%; transform:translateX(-50%);
-      top:8px;
-      font-size:38px;
-      font-weight:900;
-      font-style:italic;
-      color:var(--accent);
-      z-index:1250;
-      pointer-events:none;
-      letter-spacing:1px;
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    /* hamburger */
-    .menu-btn{
-      font-size:36px; /* bigger for easy access */
-      line-height:1;
-      cursor:pointer;
-      padding:6px 10px;
-      border-radius:8px;
-      background:transparent;
-      color:var(--white);
-      border:2px solid rgba(255,255,255,0.06);
-      transition:all .18s ease;
-      z-index:1300;
-    }
-    .menu-btn:active{transform:scale(.98)}
-
-    /* nav panel (appears when hamburger clicked) */
-    .nav-panel{
-      position:fixed;
-      top:64px; right:18px;
-      background:rgba(0,0,0,0.95);
-      border:1px solid rgba(255,43,77,0.12);
-      display:flex; flex-direction:column; gap:6px;
-      padding:8px; border-radius:8px; display:none; z-index:1300;
-    }
-    .nav-panel a{ color:var(--white); text-decoration:none; padding:8px 14px; display:block; white-space:nowrap }
-    .nav-panel a:hover{ background:var(--accent); color:#000 }
-
-    /* ===== HERO (box with slides) ===== */
-    main{min-height:100vh}
-    .hero-wrap{
-      display:flex; align-items:center; justify-content:center;
-      padding:90px 18px 40px; /* push below header */
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      transition: background 0.4s ease;
+      background: rgba(0, 0, 0, 0.4); /* Transparent black */
     }
 
-    .hero-box{
-      width:100%; max-width:1100px;
-      height:60vh; min-height:320px;
-      background:#111; /* fallback */
-      border-radius:20px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 14px 40px rgba(0,0,0,0.6);
+    header.scrolled {
+      background: #000; /* Solid black on scroll */
     }
 
-    .slide{
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      background-size:cover; background-position:center;
-      opacity:0; transition:opacity 1s ease; backface-visibility:hidden;
-    }
-    .slide.active{opacity:1}
-
-    .slide .caption{
-      text-align:center; max-width:90%;
-      font-size:clamp(28px,4vw,56px);
-      font-weight:500; /* medium */
-      color:var(--white);
-      text-shadow: 2px 2px 12px var(--shadow); /* 70% shadow */
-      letter-spacing:1px;
-    }
-    .slide .caption .red{ color:var(--accent); font-weight:700 }
-
-    /* arrows */
-    .arrow{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center;
-      background:rgba(0,0,0,0.45); color:var(--white); cursor:pointer; border:1px solid rgba(255,255,255,0.04);
-      transition:all .15s ease; user-select:none; z-index:1200;
-    }
-    .arrow:hover{ background:rgba(0,0,0,0.6)}
-    .arrow.left{ left:14px }
-    .arrow.right{ right:14px }
-
-    /* dots */
-    .dots{ position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:1200 }
-    .dots button{ width:10px;height:10px;border-radius:50%; background:rgba(255,255,255,0.18); border:0; cursor:pointer }
-    .dots button.active{ background:var(--accent); box-shadow:0 0 10px rgba(255,43,77,0.18) }
-
-    /* ===== CONTENT SECTIONS ===== */
-    section{ padding:60px 18px; }
-    .container{ max-width:1100px; margin:0 auto }
-
-    .about .cols{ display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap }
-    .about .cols .col{ flex:1; min-width:240px }
-
-    .shop-preview{ display:flex; gap:18px; flex-wrap:wrap; justify-content:center }
-    .shop-box{ width:240px; height:240px; border-radius:12px; overflow:hidden; background-size:cover; background-position:center; display:flex; align-items:flex-end; justify-content:center; color:#000; font-weight:700; cursor:pointer }
-
-    .brands-logos{ display:flex; gap:24px; justify-content:center; flex-wrap:wrap; align-items:center }
-    .brands-logos .logo{ width:140px; height:70px; background-size:contain; background-repeat:no-repeat; background-position:center; border-radius:8px }
-
-    .contact{ display:flex; justify-content:center }
-    .contact .btn{ background:var(--accent); border-radius:8px; padding:18px 56px; font-weight:700; color:#000; cursor:pointer; border:none }
-
-    footer{ padding:28px 18px; text-align:center; color:rgba(255,255,255,0.6) }
-
-    /* responsive */
-    @media (max-width:900px){
-      .hero-box{ height:52vh }
-      .arrow{ width:50px;height:50px }
-    }
-    @media (max-width:640px){
-      header{padding:8px 12px}
-      .brand-name{font-size:20px}
-      .hero-box{ height:48vh; border-radius:16px }
-      .slide .caption{ font-size:clamp(20px,6vw,34px) }
-      .menu-btn{font-size:34px}
-      .arrow{ width:44px;height:44px }
+    header img {
+      height: 50px;
     }
 
+    .brand-name {
+      font-family: 'Kanit', sans-serif;
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 1001;
+      position: relative;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 250px;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: right 0.4s ease;
+    }
+
+    nav.active {
+      right: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e63946;
+    }
+
+    /* Hero */
+    .hero {
+      margin-top: 100px;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-slider {
+      position: relative;
+      width: 90%;
+      height: 80%;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-text {
+      font-family: 'Kanit', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+    }
+
+    .hero-text .red {
+      color: red;
+      font-weight: 700;
+    }
+
+    /* Section */
+    section {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    #shop img {
+      width: 200px;
+      border-radius: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-slider {
+        width: 95%;
+        height: 60%;
+      }
+      .hero-text {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="left">
-      <img class="logo" src="image/header.png" alt="LANX logo">
-    </div>
-
+  <!-- Header -->
+  <header id="header">
+    <img src="image/header.png" alt="Lanx Logo">
     <div class="brand-name">LANX</div>
-
-    <div>
-      <button class="menu-btn" aria-label="menu">☰</button>
-      <nav class="nav-panel" aria-hidden="true">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#shop">Shop</a>
-        <a href="#brands">Brand We Trust</a>
-        <a href="#contact">Reach Us</a>
-      </nav>
-    </div>
+    <div class="menu-toggle">&#9776;</div>
+    <nav id="nav">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#shop">Shop</a>
+      <a href="#brands">Brand We Trust</a>
+      <a href="#contact">Reach Us</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <div class="hero-wrap">
-      <div class="hero-box" id="heroBox">
-        <div class="slide active" data-index="0" style="background-image:url('image/hero1.jpg')">
-          <div class="caption">Second Or Never</div>
-        </div>
-
-        <div class="slide" data-index="1" style="background-image:url('image/hero2.jpg')">
-          <div class="caption">I See <span class="red">RED</span></div>
-        </div>
-
-        <div class="slide" data-index="2" style="background-image:url('image/hero3.jpg')">
-          <div class="caption">Rising Star</div>
-        </div>
-
-        <button class="arrow left" aria-label="previous">‹</button>
-        <button class="arrow right" aria-label="next">›</button>
-
-        <div class="dots" aria-hidden="true">
-          <button data-dot="0" class="active"></button>
-          <button data-dot="1"></button>
-          <button data-dot="2"></button>
-        </div>
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-slider">
+      <div class="hero-slide active" style="background-image: url('image/item1.jpg');">
+        <div class="hero-text">Second Or Never</div>
+      </div>
+      <div class="hero-slide" style="background-image: url('image/item2.jpg');">
+        <div class="hero-text">I See <span class="red">RED</span></div>
+      </div>
+      <div class="hero-slide" style="background-image: url('image/brand1.jpg');">
+        <div class="hero-text">Rising Star</div>
       </div>
     </div>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container about">
-        <h2>About</h2>
-        <div class="cols">
-          <div class="col">
-            <h3>Owner's Dream</h3>
-            <p>He dreamt of being a professional rider with sponsors since childhood — chasing speed, skill and recognition on track.</p>
-          </div>
-          <div class="col">
-            <h3>About LANX</h3>
-            <p>LANX creates all‑round sport fashion: trackday-ready pieces that work for street, market runs, and everyday life.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>He dreamed of being a professional rider with sponsors since he was a kid. Lanx was created to be all-rounder sport fashion, even for daily shopping.</p>
+  </section>
 
-    <!-- SHOP -->
-    <section id="shop">
-      <div class="container">
-        <h2>Shop Preview</h2>
-        <div class="shop-preview">
-          <a class="shop-box" href="linked here" style="background-image:url('image/item1.jpg')">Item 1</a>
-          <a class="shop-box" href="linked here" style="background-image:url('image/item2.jpg')">Item 2</a>
-        </div>
-      </div>
-    </section>
+  <!-- Shop -->
+  <section id="shop">
+    <h2>Shop Preview</h2>
+    <a href="linked here"><img src="image/item1.jpg" alt="Item 1"></a>
+    <a href="linked here"><img src="image/item2.jpg" alt="Item 2"></a>
+  </section>
 
-    <!-- BRANDS -->
-    <section id="brands">
-      <div class="container">
-        <h2>Brand We Trust</h2>
-        <div class="brands-logos">
-          <div class="logo" style="background-image:url('image/brand1.jpg')"></div>
-          <div class="logo" style="background-image:url('image/brand2.jpg')"></div>
-          <div class="logo" style="background-image:url('image/brand3.jpg')"></div>
-        </div>
-      </div>
-    </section>
+  <!-- Brands -->
+  <section id="brands">
+    <h2>Brand We Trust</h2>
+    <div>
+      <img src="image/brand1.jpg" alt="Brand 1">
+      <img src="image/brand2.jpg" alt="Brand 2">
+      <img src="image/brand3.jpg" alt="Brand 3">
+    </div>
+  </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container contact">
-        <button class="btn" onclick="window.open('https://forms.gle/PLACEHOLDER','_blank')">REACH US</button>
-      </div>
-    </section>
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Reach Us</h2>
+    <a href="https://forms.gle/" target="_blank">
+      <button style="padding:20px 50px; border:none; border-radius:10px; background:red; color:#fff; font-size:1.2rem; cursor:pointer;">
+        Reach Us
+      </button>
+    </a>
+  </section>
 
-  </main>
-
+  <!-- Footer -->
   <footer>
-    <div class="container">LnxwCopyright2025 — preview</div>
+    <p>LnxwCopyright2025</p>
   </footer>
 
   <script>
-    // Simple slideshow logic (auto + arrows + dots)
-    (function(){
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dots button');
-      const prev = document.querySelector('.arrow.left');
-      const next = document.querySelector('.arrow.right');
-      let idx = 0;
-      let timer = null;
+    // Hamburger menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#nav');
 
-      function go(i){
-        slides[idx].classList.remove('active');
-        dots[idx].classList.remove('active');
-        idx = (i + slides.length) % slides.length;
-        slides[idx].classList.add('active');
-        dots[idx].classList.add('active');
-      }
-      function nextSlide(){ go(idx+1) }
-      function prevSlide(){ go(idx-1) }
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
 
-      next.addEventListener('click', ()=>{ nextSlide(); resetTimer() });
-      prev.addEventListener('click', ()=>{ prevSlide(); resetTimer() });
+    // Hero slider
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
 
-      dots.forEach(d=> d.addEventListener('click', e=>{ go(Number(e.currentTarget.dataset.dot)); resetTimer() }));
-
-      function startTimer(){ timer = setInterval(nextSlide,5000) }
-      function resetTimer(){ clearInterval(timer); startTimer() }
-
-      startTimer();
-
-      // menu toggle
-      const menuBtn = document.querySelector('.menu-btn');
-      const nav = document.querySelector('.nav-panel');
-      menuBtn.addEventListener('click', ()=>{
-        const visible = nav.style.display === 'flex';
-        nav.style.display = visible ? 'none' : 'flex';
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) slide.classList.add('active');
       });
-      // close nav on link click
-      document.querySelectorAll('.nav-panel a').forEach(a=> a.addEventListener('click', ()=> nav.style.display='none'));
+    }
 
-      // fade-in sections
-      const sections = document.querySelectorAll('section');
-      const onScroll = ()=>{
-        sections.forEach(s=>{
-          if(s.getBoundingClientRect().top < window.innerHeight - 100) s.classList.add('visible');
-        });
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 5000);
+
+    // Header background on scroll
+    const header = document.querySelector('#header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
-      window.addEventListener('scroll', onScroll);
-      onScroll();
-
-    })();
+    });
   </script>
+
 </body>
 </html>
