@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LANX — Preview</title>
 
-  <!-- Kanit font (medium + bold) -->
+  <!-- Kanit font -->
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#000;
-      --accent:#ff2b4d; /* rose red */
+      --accent:#ff2b4d;
       --white:#fff;
       --shadow: rgba(0,0,0,0.7);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:'Kanit',sans-serif;
@@ -27,133 +26,107 @@
 
     /* ===== HEADER ===== */
     header{
-      position:fixed;
-      top:0;left:0;right:0;
+      position:fixed;top:0;left:0;right:0;
       height:62px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      display:flex;align-items:center;justify-content:space-between;
       padding:8px 18px;
       z-index:1200;
       background:rgba(0,0,0,0.8); /* hitam 80% */
     }
     header .left{display:flex;align-items:center;gap:12px}
-    header img.logo{height:40px; width:auto; object-fit:contain}
+    header img.logo{height:40px;width:auto;object-fit:contain}
 
     .brand-name{
-      position:fixed;
-      left:50%; transform:translateX(-50%);
+      position:fixed;left:50%;transform:translateX(-50%);
       top:8px;
-      font-size:38px;
-      font-weight:900;
-      font-style:italic;
+      font-size:38px;font-weight:900;font-style:italic;
       color:var(--accent);
       z-index:1250;
       pointer-events:none;
     }
 
-    /* hamburger */
     .menu-btn{
-      font-size:36px;
-      line-height:1;
-      cursor:pointer;
-      padding:6px 10px;
-      border-radius:8px;
-      background:transparent;
+      font-size:36px;cursor:pointer;
+      padding:6px 10px;border:none;background:transparent;
       color:var(--white);
-      border:none;
-      z-index:1300;
     }
 
-    /* nav panel */
     .nav-panel{
-      position:fixed;
-      top:64px; right:18px;
+      position:fixed;top:64px;right:18px;
       background:rgba(0,0,0,0.95);
-      border:1px solid rgba(255,43,77,0.12);
-      flex-direction:column; gap:6px;
-      padding:8px; border-radius:8px; display:none; z-index:1300;
+      border-radius:8px;
+      display:none;flex-direction:column;gap:6px;
+      padding:8px;z-index:1300;
     }
-    .nav-panel a{ color:var(--white); text-decoration:none; padding:8px 14px; display:block }
-    .nav-panel a:hover{ background:var(--accent); color:#000 }
+    .nav-panel a{
+      color:var(--white);text-decoration:none;
+      padding:8px 14px;display:block
+    }
+    .nav-panel a:hover{background:var(--accent);color:#000}
 
     /* ===== HERO ===== */
-    main{min-height:100vh}
-    .hero-wrap{
-      display:flex; align-items:center; justify-content:center;
-      padding:90px 18px 40px;
-    }
-
+    .hero-wrap{display:flex;align-items:center;justify-content:center;padding:90px 18px 40px}
     .hero-box{
-      width:100%; max-width:1100px;
-      height:60vh; min-height:320px;
-      background:#111;
-      border-radius:20px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 14px 40px rgba(0,0,0,0.6);
+      width:100%;max-width:1100px;height:60vh;min-height:320px;
+      border-radius:20px;overflow:hidden;position:relative;
+      background:#111;box-shadow:0 14px 40px rgba(0,0,0,0.6)
     }
-
-    .slide{
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      background-size:cover; background-position:center;
-      opacity:0; transition:opacity 1s ease;
-    }
+    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}
     .slide.active{opacity:1}
-
-    .slide .caption{
-      text-align:center; max-width:90%;
+    .caption{
       font-size:clamp(28px,4vw,56px);
-      font-weight:500;
-      color:var(--white);
-      text-shadow: 2px 2px 12px var(--shadow);
+      font-weight:500;text-align:center;color:var(--white);
+      text-shadow:2px 2px 12px var(--shadow)
     }
-    .slide .caption .red{ color:var(--accent); font-weight:700 }
+    .caption .red{color:var(--accent);font-weight:700}
 
-    /* arrows */
-    .arrow{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:56px; height:56px; border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
-      background:rgba(0,0,0,0.45); color:var(--white); cursor:pointer;
-      border:1px solid rgba(255,255,255,0.04);
-      z-index:1200;
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);
+      width:56px;height:56px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.45);color:var(--white);cursor:pointer;
+      border:1px solid rgba(255,255,255,0.04);z-index:1200
     }
-    .arrow.left{ left:14px }
-    .arrow.right{ right:14px }
+    .arrow.left{left:14px}.arrow.right{right:14px}
+    .dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:1200}
+    .dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.18);border:0}
+    .dots button.active{background:var(--accent)}
 
-    /* dots */
-    .dots{ position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:1200 }
-    .dots button{ width:10px;height:10px;border-radius:50%; background:rgba(255,255,255,0.18); border:0; cursor:pointer }
-    .dots button.active{ background:var(--accent) }
+    /* ===== CONTENT SECTIONS ===== */
+    section{padding:60px 18px}
+    .container{max-width:1100px;margin:0 auto}
 
-    /* CONTENT */
-    section{ padding:60px 18px; }
-    .container{ max-width:1100px; margin:0 auto }
+    .about .cols{display:flex;gap:28px;flex-wrap:wrap}
+    .about .col{flex:1;min-width:240px}
 
-    footer{ padding:28px 18px; text-align:center; color:rgba(255,255,255,0.6) }
+    .shop-preview{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+    .shop-box{width:240px;height:240px;border-radius:12px;overflow:hidden;
+      background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:center;
+      color:#000;font-weight:700}
 
-    @media (max-width:640px){
-      header{padding:8px 12px}
+    .brands-logos{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+    .brands-logos .logo{width:140px;height:70px;background-size:contain;background-repeat:no-repeat;background-position:center;border-radius:8px}
+
+    .contact{display:flex;justify-content:center}
+    .contact .btn{background:var(--accent);border-radius:8px;padding:18px 56px;font-weight:700;color:#000;border:none}
+
+    footer{padding:28px 18px;text-align:center;color:rgba(255,255,255,0.6)}
+
+    @media(max-width:640px){
       .brand-name{font-size:22px}
-      .hero-box{ height:48vh; border-radius:16px }
-      .slide .caption{ font-size:clamp(20px,6vw,34px) }
+      .hero-box{height:48vh;border-radius:16px}
+      .caption{font-size:clamp(20px,6vw,34px)}
       .menu-btn{font-size:34px}
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="left">
-      <img class="logo" src="image/header.png" alt="LANX logo">
-    </div>
-
+    <div class="left"><img class="logo" src="image/header.png" alt="LANX logo"></div>
     <div class="brand-name">LANX</div>
-
     <div>
-      <button class="menu-btn" aria-label="menu">☰</button>
-      <nav class="nav-panel" aria-hidden="true">
+      <button class="menu-btn">☰</button>
+      <nav class="nav-panel">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="#shop">Shop</a>
@@ -164,6 +137,7 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <div class="hero-wrap" id="hero">
       <div class="hero-box">
         <div class="slide active" style="background-image:url('image/hero1.jpg')">
@@ -177,18 +151,53 @@
         </div>
         <button class="arrow left">‹</button>
         <button class="arrow right">›</button>
-        <div class="dots">
-          <button class="active"></button>
-          <button></button>
-          <button></button>
-        </div>
+        <div class="dots"><button class="active"></button><button></button><button></button></div>
       </div>
     </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container about">
+        <h2>About</h2>
+        <div class="cols">
+          <div class="col"><h3>Owner's Dream</h3><p>He dreamt of being a professional rider with sponsors since childhood — chasing speed, skill and recognition on track.</p></div>
+          <div class="col"><h3>About LANX</h3><p>LANX creates all-round sport fashion: trackday-ready pieces that work for street, market runs, and everyday life.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="shop">
+      <div class="container">
+        <h2>Shop Preview</h2>
+        <div class="shop-preview">
+          <a class="shop-box" href="#" style="background-image:url('image/item1.jpg')">Item 1</a>
+          <a class="shop-box" href="#" style="background-image:url('image/item2.jpg')">Item 2</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANDS -->
+    <section id="brands">
+      <div class="container">
+        <h2>Brand We Trust</h2>
+        <div class="brands-logos">
+          <div class="logo" style="background-image:url('image/brand1.jpg')"></div>
+          <div class="logo" style="background-image:url('image/brand2.jpg')"></div>
+          <div class="logo" style="background-image:url('image/brand3.jpg')"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container contact">
+        <button class="btn" onclick="window.open('https://forms.gle/PLACEHOLDER','_blank')">REACH US</button>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <div class="container">LnxwCopyright2025 — preview</div>
-  </footer>
+  <footer><div class="container">LnxwCopyright2025 — preview</div></footer>
 
   <script>
     (function(){
@@ -196,30 +205,26 @@
       const dots=document.querySelectorAll('.dots button');
       const prev=document.querySelector('.arrow.left');
       const next=document.querySelector('.arrow.right');
-      let idx=0; let timer=null;
+      let idx=0,timer;
 
       function go(i){
-        slides[idx].classList.remove('active');
-        dots[idx].classList.remove('active');
+        slides[idx].classList.remove('active');dots[idx].classList.remove('active');
         idx=(i+slides.length)%slides.length;
-        slides[idx].classList.add('active');
-        dots[idx].classList.add('active');
+        slides[idx].classList.add('active');dots[idx].classList.add('active');
       }
-      function nextSlide(){ go(idx+1) }
-      function prevSlide(){ go(idx-1) }
-
-      next.addEventListener('click', ()=>{ nextSlide(); resetTimer() });
-      prev.addEventListener('click', ()=>{ prevSlide(); resetTimer() });
-      dots.forEach((d,i)=> d.addEventListener('click', ()=>{ go(i); resetTimer() }));
-
-      function startTimer(){ timer=setInterval(nextSlide,5000) }
-      function resetTimer(){ clearInterval(timer); startTimer() }
-      startTimer();
+      function nextSlide(){go(idx+1)}
+      function prevSlide(){go(idx-1)}
+      next.addEventListener('click',()=>{nextSlide();reset()});
+      prev.addEventListener('click',()=>{prevSlide();reset()});
+      dots.forEach((d,i)=>d.addEventListener('click',()=>{go(i);reset()}));
+      function start(){timer=setInterval(nextSlide,5000)}
+      function reset(){clearInterval(timer);start()}
+      start();
 
       // menu toggle
       const menuBtn=document.querySelector('.menu-btn');
       const nav=document.querySelector('.nav-panel');
-      menuBtn.addEventListener('click', ()=> nav.style.display= nav.style.display==='flex' ? 'none':'flex');
+      menuBtn.addEventListener('click',()=>nav.style.display=nav.style.display==='flex'?'none':'flex');
     })();
   </script>
 </body>
